@@ -1,0 +1,78 @@
+alias config='$(which git) --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# -----------------------------------------------------------------------------
+# }}} WINDOWS {{{
+# -----------------------------------------------------------------------------
+if case "$(uname -n)" in "DESKTOP-L2ATRNS"*) ;; *) false;; esac; then
+  dir(){ "C:\Windows\explorer.exe" "$@" }
+  subl() { "C:\Program Files\Sublime Text 3\sublime_text.exe" "$@" }
+  sub() { subl "$@" }
+
+  rc(){ subl "$HOME\.bashrc" }
+
+  hosts(){ powershell -c start -verb runas notepad.exe 'C:\Windows\System32\drivers\etc\hosts' }
+
+  talon(){ subl "C:\Program Files\Talon\talon_plugins" }
+  tlog(){ tail -f "$HOME\AppData\Roaming\talon\talon.log" }
+
+  rm '$HOME\AppData\Roaming\talon\talong.log'
+  touch '$HOME\AppData\Roaming\talon\talong.log'
+fi
+
+# -----------------------------------------------------------------------------
+# }}} OSX {{{
+# -----------------------------------------------------------------------------
+if case "$(uname -n)" in "C02KQ0E1FFT3"*) ;; *) false;; esac; then
+  dir(){ open -F -a "Finder" "$@" }
+  subl() { open -F -a "Sublime Text" "$@" }
+  sub() { subl "$@" }
+
+  rc(){ open -a "Sublime Text" "$HOME/.zshrc" }
+  rc2(){ open -a "Sublime Text" "$HOME/.oh-my-zsh" }
+  vrc(){ open -a "Sublime Text" "$HOME/.vimrc" }
+
+  hosts() { sudo vim "/etc/hosts" }
+fi
+
+downloads(){ cd "$HOME/Downloads" }
+cloud(){ cd "$HOME/Desktop/cloud/" }
+me(){ cd "$HOME/Desktop/me/" }
+
+sb(){
+  source ~/.zshrc
+}
+
+pyserver(){
+  echo "py -m http.server --bind 127.0.0.1"
+  eval "py -m http.server --bind 127.0.0.1"
+}
+
+phpserver(){
+  echo "php -S localhost:9000"
+  eval "php -S localhost:9000"
+}
+
+dbCreate() {
+  if [ $# -eq 0 ]; then
+    echo "Please enter a database name."
+  else
+    # mysql -u$db_user -p$db_pw -e "create database $1 CHARACTER SET utf8;"
+    mysql -e "create database $1 CHARACTER SET utf8mb4;"
+  fi
+}
+
+dbDrop() {
+  if [ $# -eq 0 ]; then
+    echo "Please enter a database name."
+  else
+    mysql -u$db_user -p$db_pw -e "drop database $1;"
+  fi
+}
+
+dbRecreate(){
+  if [ $# -eq 0 ]; then
+    echo "Please enter a database name."
+  else
+    dbDrop $1; dbCreate $1;
+  fi
+}

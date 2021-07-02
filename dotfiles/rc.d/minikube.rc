@@ -1,0 +1,1 @@
+alias ms='minikube start --memory 8G --cpus=4'

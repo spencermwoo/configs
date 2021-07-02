@@ -1,0 +1,66 @@
+if [[ "DESKTOP-L2ATRNS" =~ "$(uname -n)" ]]; then
+  ps() {
+    powershell -c start -verb runas powershell.exe
+  }
+  alias bfg='java -jar $HOME/Downloads/bfg-1.13.2.jar'
+  hashcat(){"$HOME\Downloads\hashcat-4.2.1\hashcat64.exe"}
+fi
+
+if [[ "C02KQ0E1FFT3" =~ "$(uname -n)" ]]; then
+  xcod(){
+    sudo rm -r -f /Library/Developer/CommandLineTools
+    xcode-select --install
+  }
+  ghidra(){"$HOME\Desktop\SEC\ghidra_9.0\ghidraRun.bat" }
+  bfg(){ java -jar "$HOME/Desktop/bfg-1.14.0.jar" "$@" }
+fi
+
+tb(){ python3 "~/Desktop/me/ticket-bisect/ticket-bisect.py" "$@" }
+
+gport(){
+  lsof -i :$@
+  # netstat -an | grep $@
+}
+
+kpid(){
+  kill -9 $@
+}
+
+alias exif='exiftool -all='
+
+alias ports='nmap -T4 -A -p- 1.1.1.1'
+alias ddoo='ssh root@1.1.1.1'
+
+watch(){
+  while :; 
+  do 
+  clear
+  $1
+  sleep ${2:-1}
+  done
+}
+
+out(){
+  "|& tee out.txt"
+}
+
+alias ls='ls -GFh'
+alias py='python3'
+alias nc='ncat'
+ossl() {
+  openssl x509 -in $@ -text > 1.txt
+}
+nmapp(){
+  nmap -T4 -A -p- $@
+  # -Pn
+  # ports=$(nmap -p- --min-rate=1000 -T4 10.10.10.27 | grep ^[0-9] | cut -d '/' -f 1 | tr '\n' ',' | sed s/,$//)
+  # nmap -sC -sV -p$ports $@
+}
+
+alias dl='youtube-dl'
+alias dl2='youtube-dl --extract-audio --audio-format mp3'
+alias dl3='youtube-dl -F '
+alias dl4='youtube-dl -f '
+
+alias mp3='ffmpeg -acodec libmp3lame output.mp3 -i '
+alias mp4mov='ffmpeg -i input_file.mp4 -acodec copy -vcodec copy -f mov output_file.mov'

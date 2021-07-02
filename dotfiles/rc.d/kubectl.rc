@@ -1,0 +1,13 @@
+alias kv='kubectl version'
+alias kcx='kubectx'
+alias kns='kubens'
+
+alias ksns='kubectl config set-context --current --namespace='
+
+# alias kgc='kubectl get certs'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias ke='kubectl explain'
+alias kdel='kubectl delete'
+alias kr='kubectl run'
+alias kdry='kubectl run --dry-run=true -o yaml > dry.yaml'
