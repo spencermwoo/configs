@@ -76,3 +76,14 @@ dbRecreate(){
     dbDrop $1; dbCreate $1;
   fi
 }
+
+up() {
+  str=""
+  count=0
+  while [ "$count" -lt "$1" ];
+  do
+    str=$str"../"
+    let count=count+1
+  done
+  cd $str
+}

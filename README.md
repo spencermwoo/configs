@@ -5,13 +5,13 @@
 
 ## dotfiles
 
-### Usage
 
-![](../dotfiles/README.md)
+
+![readme](../dotfiles/README.md)
 
 ## search_engines
 
-### Usage
+aliases for the web browser
 
-![](../search_engines/README.md)
+![readme](../search_engines/README.md)
 
